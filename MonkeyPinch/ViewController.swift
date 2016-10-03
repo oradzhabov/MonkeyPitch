@@ -12,6 +12,7 @@ class ViewController: UIViewController/*, UIGestureRecognizerDelegate*/ {
 
     var btnManager = JoyButtonManager()
     
+    
     open override var shouldAutorotate: Bool {
         get {
             return false
