@@ -97,6 +97,46 @@ class JoyButtonManager : NSObject, UIGestureRecognizerDelegate {
         doubleTapGesture.numberOfTapsRequired = 2
         (self.controller?.view)!.addGestureRecognizer(doubleTapGesture)
     }
+    
+    func save () -> Bool {
+        let filePath = self.dataFilePath()
+        
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: data)
+        archiver.encode(imgArray, forKey: "imgArray")
+        archiver.finishEncoding()
+        let success = data.write(toFile: filePath, atomically: true)
+        // If anything went wrong while writing the file, success will be set to NO
+        return success
+    }
+    func load (to controller: UIViewController?,
+               delegate playDelegate: ((_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void)?)
+        -> Void {
+        
+        let filePath = self.dataFilePath()
+        if (FileManager.default.fileExists(atPath: filePath)) {
+            self.controller = controller
+            
+            let data = NSData(contentsOfFile: filePath)
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data as! Data)
+            let object = unarchiver.decodeObject(forKey: "imgArray")
+            unarchiver.finishDecoding()
+            
+            clear()
+            
+            imgArray = object as! [JoyButton]
+            //
+            // Finish building objects
+            //
+            for obj in imgArray {
+                obj.build(to: (self.controller?.view)!,
+                          delegate: playDelegate,
+                          longTapdelegate : deleteBtnDelegate)
+            }
+            setPlayMode()
+        }
+    }
+    
     private func getFirstFreeBtnIndex() -> Int {
         for i in 1 ..< 33 {
             var exist : Bool = false
@@ -120,6 +160,12 @@ class JoyButtonManager : NSObject, UIGestureRecognizerDelegate {
             }
         }
     }
+    private func clear() -> Void {
+        for obj in imgArray {
+            obj.clear()
+        }
+        imgArray.removeAll()
+    }
     private func deleteBtnDelegate (_ me: JoyButton) {
         // create the alert
         let alert = UIAlertController(title: "Confirmation",
@@ -141,5 +187,15 @@ class JoyButtonManager : NSObject, UIGestureRecognizerDelegate {
         
         // show the alert
         controller?.present(alert, animated: true, completion: nil)
+    }
+    private func dataFilePath() -> String {
+        
+        let paths = NSSearchPathForDirectoriesInDomains(
+            FileManager.SearchPathDirectory.documentDirectory,
+            FileManager.SearchPathDomainMask.userDomainMask, true)
+        
+        let documentsDirectory = paths[0] as NSString
+
+        return documentsDirectory.appendingPathComponent ("data.archive") as String
     }
 }

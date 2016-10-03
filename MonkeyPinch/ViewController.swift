@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController/*, UIGestureRecognizerDelegate*/ {
+class ViewController: UIViewController {
 
     var btnManager = JoyButtonManager()
     
@@ -58,6 +58,35 @@ class ViewController: UIViewController/*, UIGestureRecognizerDelegate*/ {
         }
         
         self.btnManager.setPlayMode()
+        
+        
+        btnManager.load(to: self, delegate: playDelegate)
+        
+        //
+        // Assign notification for save preferences
+        //
+        let app = UIApplication.shared
+        NotificationCenter.default.addObserver(self,
+                        selector: #selector(ViewController.applicationWillResignActive(notification:)),
+                        name: NSNotification.Name.UIApplicationWillResignActive,
+        object: app)
+    }
+    func applicationWillResignActive(notification:NSNotification) {
+        _ = btnManager.save()
+    }
+    
+    func playDelegate(_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void {
+        switch state {
+        case .began:
+            print ("Press Image \(me.getJoyIndex())")
+            break
+        case .ended:
+            print ("Release Image \(me.getJoyIndex())")
+            // self.imgArray[0].setMode(mode: MyButtonMode.Play)
+            //self.btnManager.setEditMode()
+            break
+        default: break
+        }
     }
 
 }

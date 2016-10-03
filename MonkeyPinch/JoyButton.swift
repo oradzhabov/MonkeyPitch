@@ -14,15 +14,19 @@ enum MyButtonMode : Int {
     case Play
 }
 
-class JoyButton : NSObject, UIGestureRecognizerDelegate
+class JoyButton : NSObject, NSCoding, NSCopying, UIGestureRecognizerDelegate
 {
+
+
     var joyId: Int = 0
     var parentView: UIView? = nil
     var imageView:UIImageView? = nil
     var playDelegate: ((_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void)? = nil
     var longTapDelegate: ((_ me: JoyButton) -> Void)? = nil
     
-    
+    override init() {
+        
+    }
     
     func build(to view: UIView,
                for orig: CGPoint,
@@ -41,6 +45,7 @@ class JoyButton : NSObject, UIGestureRecognizerDelegate
         imageView?.frame = CGRect(origin: orig, size: Constants.Size.JoystickButton)
         imageView?.contentMode = UIViewContentMode.scaleToFill
         
+        /*
         self.parentView = view
         self.parentView?.addSubview(imageView!)
         
@@ -54,9 +59,26 @@ class JoyButton : NSObject, UIGestureRecognizerDelegate
         
         self.playDelegate = playDelegate
         self.longTapDelegate = longTapDelegate
-        
+        */
         setMode(mode: lMode)
-
+        
+        build (to: view,
+               delegate: playDelegate,
+               longTapdelegate: longTapDelegate)
+    }
+    /*
+        This func should be called after serialization object to finish building
+     */
+    func build(to view: UIView,
+               delegate playDelegate: ((_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void)?,
+               longTapdelegate longTapDelegate: ((_ me: JoyButton) -> Void)?) -> Void
+    {
+        self.parentView = view
+        self.parentView?.addSubview(imageView!)
+        
+        self.playDelegate = playDelegate
+        self.longTapDelegate = longTapDelegate
+        
     }
     func setPlayMode() -> Void {
         
@@ -133,5 +155,40 @@ class JoyButton : NSObject, UIGestureRecognizerDelegate
         if self.longTapDelegate != nil {
             self.longTapDelegate!(self)
         }
+    }
+    /*
+        Serializing interface
+    */
+    public func encode(with aCoder: NSCoder) {
+        // super.encodeWithCoder(coder)
+        let cx:Float = Float(((imageView?.frame.minX)! + (imageView?.frame.maxX)! - Constants.Size.JoystickButton.width) / 2)
+        let cy:Float = Float(((imageView?.frame.minY)! + (imageView?.frame.maxY)! - Constants.Size.JoystickButton.height) / 2)
+        
+        aCoder.encode(self.joyId, forKey: "joyId")
+        aCoder.encode(cx, forKey: "cx")
+        aCoder.encode(cy, forKey: "cy")
+    }
+ 
+    required init(coder decoder: NSCoder) {
+        self.joyId = decoder.decodeInteger(forKey: "joyId")
+        
+        let cx = CGFloat(decoder.decodeFloat(forKey: "cx"))
+        let cy = CGFloat(decoder.decodeFloat(forKey: "cy"))
+        
+        let image = UIImage(named: Constants.FileName.Button)
+        imageView = UIImageView(image: image!)
+        imageView?.isUserInteractionEnabled = true
+        
+        imageView?.frame = CGRect(origin: CGPoint(x:cx,y:cy), size: Constants.Size.JoystickButton)
+        imageView?.contentMode = UIViewContentMode.scaleToFill
+        
+        // super.init(coder: decoder)
+    }
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let copy = JoyButton()
+        copy.joyId = joyId
+        copy.imageView?.frame = (imageView?.frame)!
+        
+        return copy
     }
 }
