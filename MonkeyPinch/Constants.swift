@@ -23,4 +23,15 @@ struct Constants {
         static let JoyButton = UIColor(red: 1.0, green: 0.0, blue: 0.5, alpha: 1.0)
         
     }
+    
+    // This structure should be conicident with other parts of application
+    // Structure's name is similar to Android's analogue
+    struct ServerMsgTagConstants {
+        static let  DEVICELIST = "DEVICELIST"
+        static let  ASKDEVICE = "ASKDEVICE"
+        static let  ASKDEVICE_OK = "ASKDEVICE_OK"
+        static let  ASKDEVICE_ERROR = "ASKDEVICE_ERROR"
+        static let  TAG_DELIMETER = " "
+        static let  DEVICELIST_DELIMETER = ","
+    }
 }
