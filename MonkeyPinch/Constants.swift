@@ -24,6 +24,11 @@ struct Constants {
         
     }
     
+    // Common for all parts of application UUID
+    struct UUID {
+        static let MY_UUID = "B62C4E8D-62CC-404b-BBBF-BF3E3BBB1374"
+    }
+    
     // This structure should be conicident with other parts of application
     // Structure's name is similar to Android's analogue
     struct ServerMsgTagConstants {

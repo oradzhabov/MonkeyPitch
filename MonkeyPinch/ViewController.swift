@@ -9,6 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private var spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    private var loadingView: UIView = UIView()
 
     var btnManager = JoyButtonManager()
     
@@ -40,16 +43,18 @@ class ViewController: UIViewController {
         { (_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void in
             print ("Press Image \(me.getJoyIndex()) with state \(state)")
         }
+var thread = ConnectThread(self)
         addImage(for: CGPoint(x:50,y:50),
                  mode: MyButtonMode.Play)
         { (_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void in
             switch state {
             case .began:
+                thread.start()
                 print ("Press Image \(me.getJoyIndex())")
                 break
             case .ended:
+                thread.stop()
                 print ("Release Image \(me.getJoyIndex())")
-                // self.imgArray[0].setMode(mode: MyButtonMode.Play)
                 self.btnManager.setEditMode()
                 break
             default: break
@@ -60,7 +65,7 @@ class ViewController: UIViewController {
         self.btnManager.setPlayMode()
         
         
-        btnManager.load(to: self, delegate: playDelegate)
+//        btnManager.load(to: self, delegate: playDelegate)
         
         //
         // Assign notification for save preferences
@@ -73,6 +78,33 @@ class ViewController: UIViewController {
     }
     func applicationWillResignActive(notification:NSNotification) {
         _ = btnManager.save()
+    }
+    
+    func waitingStart() {
+        DispatchQueue.main.async {
+            self.loadingView = UIView()
+            self.loadingView.frame = self.view.frame
+            self.loadingView.center = self.view.center
+            self.loadingView.backgroundColor = UIColor.gray
+            self.loadingView.alpha = 0.7
+//            self.loadingView.clipsToBounds = true
+//            self.loadingView.layer.cornerRadius = 10
+            
+            self.spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+            self.spinner.frame = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
+            self.spinner.center = CGPoint(x:self.loadingView.bounds.size.width / 2, y:self.loadingView.bounds.size.height / 2)
+        
+        
+            self.loadingView.addSubview(self.spinner)
+            self.view.addSubview(self.loadingView)
+            self.spinner.startAnimating()
+        }
+    }
+    func waitingStop() {
+        DispatchQueue.main.async {
+            self.spinner.stopAnimating()
+            self.loadingView.removeFromSuperview()
+        }
     }
     
     func playDelegate(_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void {

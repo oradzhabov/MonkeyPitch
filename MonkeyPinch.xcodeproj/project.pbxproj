@@ -18,6 +18,7 @@
 		20B1E83D1D9D13DA0075BA81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E83C1D9D13DA0075BA81 /* Constants.swift */; };
 		20B1E83F1DA254060075BA81 /* JoyButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */; };
 		20B1E84B1DA4F1A10075BA81 /* MyUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */; };
+		20B1E84D1DA50FBB0075BA81 /* ConnectThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		20B1E83C1D9D13DA0075BA81 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoyButtonManager.swift; sourceTree = "<group>"; };
 		20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUIButton.swift; sourceTree = "<group>"; };
+		20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectThread.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				20B1E83C1D9D13DA0075BA81 /* Constants.swift */,
 				20B1E8331D9BF28E0075BA81 /* JoyButton.swift */,
 				20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */,
+				20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */,
 			);
 			path = MonkeyPinch;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				20B1E8141D9AB2F60075BA81 /* AppDelegate.swift in Sources */,
 				20B1E83B1D9C126F0075BA81 /* CustomGestureRecognizer.swift in Sources */,
 				20B1E8321D9BAF850075BA81 /* MyButton.swift in Sources */,
+				20B1E84D1DA50FBB0075BA81 /* ConnectThread.swift in Sources */,
 				20B1E83D1D9D13DA0075BA81 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
