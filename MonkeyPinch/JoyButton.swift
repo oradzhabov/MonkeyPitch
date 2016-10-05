@@ -20,7 +20,7 @@ class JoyButton : NSObject, NSCoding, NSCopying, UIGestureRecognizerDelegate
 
     var joyId: Int = 0
     var parentView: UIView? = nil
-    var imageView:UIImageView? = nil
+    var imageView:MyUIButton? = nil
     var playDelegate: ((_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void)? = nil
     var longTapDelegate: ((_ me: JoyButton) -> Void)? = nil
     
@@ -36,13 +36,14 @@ class JoyButton : NSObject, NSCoding, NSCopying, UIGestureRecognizerDelegate
                longTapdelegate longTapDelegate: ((_ me: JoyButton) -> Void)?) -> Void
     {
         self.joyId = lId;
-        let image = UIImage(named: Constants.FileName.Button)
+//        let image = UIImage(named: Constants.FileName.Button)
         
-        imageView = UIImageView(image: image!)
+//        imageView = UIImageView(image: image!)
+        imageView = MyUIButton(frame: CGRect(origin: orig, size: Constants.Size.JoystickButton))
         imageView?.isUserInteractionEnabled = true
 
         
-        imageView?.frame = CGRect(origin: orig, size: Constants.Size.JoystickButton)
+//        imageView?.frame = CGRect(origin: orig, size: Constants.Size.JoystickButton)
         imageView?.contentMode = UIViewContentMode.scaleToFill
         
         /*
@@ -175,11 +176,12 @@ class JoyButton : NSObject, NSCoding, NSCopying, UIGestureRecognizerDelegate
         let cx = CGFloat(decoder.decodeFloat(forKey: "cx"))
         let cy = CGFloat(decoder.decodeFloat(forKey: "cy"))
         
-        let image = UIImage(named: Constants.FileName.Button)
-        imageView = UIImageView(image: image!)
+        // let image = UIImage(named: Constants.FileName.Button)
+        //imageView = UIImageView(image: image!)
+        imageView = MyUIButton(frame: CGRect(origin: CGPoint(x:cx,y:cy), size: Constants.Size.JoystickButton))
         imageView?.isUserInteractionEnabled = true
         
-        imageView?.frame = CGRect(origin: CGPoint(x:cx,y:cy), size: Constants.Size.JoystickButton)
+        // imageView?.frame = CGRect(origin: CGPoint(x:cx,y:cy), size: Constants.Size.JoystickButton)
         imageView?.contentMode = UIViewContentMode.scaleToFill
         
         // super.init(coder: decoder)

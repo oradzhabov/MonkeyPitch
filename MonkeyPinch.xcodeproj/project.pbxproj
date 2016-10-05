@@ -12,17 +12,12 @@
 		20B1E8191D9AB2F60075BA81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E8171D9AB2F60075BA81 /* Main.storyboard */; };
 		20B1E81B1D9AB2F60075BA81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E81A1D9AB2F60075BA81 /* Assets.xcassets */; };
 		20B1E81E1D9AB2F60075BA81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E81C1D9AB2F60075BA81 /* LaunchScreen.storyboard */; };
-		20B1E82B1D9AB32E0075BA81 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E8251D9AB32E0075BA81 /* banana.png */; };
-		20B1E82C1D9AB32E0075BA81 /* banana@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E8261D9AB32E0075BA81 /* banana@2x.png */; };
-		20B1E82D1D9AB32E0075BA81 /* chomp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E8271D9AB32E0075BA81 /* chomp.caf */; };
-		20B1E82E1D9AB32E0075BA81 /* hehehe1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E8281D9AB32E0075BA81 /* hehehe1.caf */; };
-		20B1E82F1D9AB32E0075BA81 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E8291D9AB32E0075BA81 /* monkey.png */; };
-		20B1E8301D9AB32E0075BA81 /* monkey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B1E82A1D9AB32E0075BA81 /* monkey@2x.png */; };
 		20B1E8321D9BAF850075BA81 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E8311D9BAF850075BA81 /* MyButton.swift */; };
 		20B1E8341D9BF28E0075BA81 /* JoyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E8331D9BF28E0075BA81 /* JoyButton.swift */; };
 		20B1E83B1D9C126F0075BA81 /* CustomGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E83A1D9C126F0075BA81 /* CustomGestureRecognizer.swift */; };
 		20B1E83D1D9D13DA0075BA81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E83C1D9D13DA0075BA81 /* Constants.swift */; };
 		20B1E83F1DA254060075BA81 /* JoyButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */; };
+		20B1E84B1DA4F1A10075BA81 /* MyUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,17 +28,12 @@
 		20B1E81A1D9AB2F60075BA81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20B1E81D1D9AB2F60075BA81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20B1E81F1D9AB2F60075BA81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20B1E8251D9AB32E0075BA81 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banana.png; sourceTree = "<group>"; };
-		20B1E8261D9AB32E0075BA81 /* banana@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banana@2x.png"; sourceTree = "<group>"; };
-		20B1E8271D9AB32E0075BA81 /* chomp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chomp.caf; sourceTree = "<group>"; };
-		20B1E8281D9AB32E0075BA81 /* hehehe1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = hehehe1.caf; sourceTree = "<group>"; };
-		20B1E8291D9AB32E0075BA81 /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
-		20B1E82A1D9AB32E0075BA81 /* monkey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "monkey@2x.png"; sourceTree = "<group>"; };
 		20B1E8311D9BAF850075BA81 /* MyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		20B1E8331D9BF28E0075BA81 /* JoyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoyButton.swift; sourceTree = "<group>"; };
 		20B1E83A1D9C126F0075BA81 /* CustomGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGestureRecognizer.swift; sourceTree = "<group>"; };
 		20B1E83C1D9D13DA0075BA81 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoyButtonManager.swift; sourceTree = "<group>"; };
+		20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +66,6 @@
 		20B1E8121D9AB2F60075BA81 /* MonkeyPinch */ = {
 			isa = PBXGroup;
 			children = (
-				20B1E8251D9AB32E0075BA81 /* banana.png */,
-				20B1E8261D9AB32E0075BA81 /* banana@2x.png */,
-				20B1E8271D9AB32E0075BA81 /* chomp.caf */,
-				20B1E8281D9AB32E0075BA81 /* hehehe1.caf */,
-				20B1E8291D9AB32E0075BA81 /* monkey.png */,
-				20B1E82A1D9AB32E0075BA81 /* monkey@2x.png */,
 				20B1E8131D9AB2F60075BA81 /* AppDelegate.swift */,
 				20B1E8151D9AB2F60075BA81 /* ViewController.swift */,
 				20B1E8171D9AB2F60075BA81 /* Main.storyboard */,
@@ -89,6 +73,7 @@
 				20B1E81C1D9AB2F60075BA81 /* LaunchScreen.storyboard */,
 				20B1E81F1D9AB2F60075BA81 /* Info.plist */,
 				20B1E8311D9BAF850075BA81 /* MyButton.swift */,
+				20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */,
 				20B1E83A1D9C126F0075BA81 /* CustomGestureRecognizer.swift */,
 				20B1E83C1D9D13DA0075BA81 /* Constants.swift */,
 				20B1E8331D9BF28E0075BA81 /* JoyButton.swift */,
@@ -158,15 +143,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20B1E82F1D9AB32E0075BA81 /* monkey.png in Resources */,
-				20B1E82D1D9AB32E0075BA81 /* chomp.caf in Resources */,
 				20B1E81E1D9AB2F60075BA81 /* LaunchScreen.storyboard in Resources */,
 				20B1E81B1D9AB2F60075BA81 /* Assets.xcassets in Resources */,
-				20B1E8301D9AB32E0075BA81 /* monkey@2x.png in Resources */,
-				20B1E82C1D9AB32E0075BA81 /* banana@2x.png in Resources */,
-				20B1E82B1D9AB32E0075BA81 /* banana.png in Resources */,
 				20B1E8191D9AB2F60075BA81 /* Main.storyboard in Resources */,
-				20B1E82E1D9AB32E0075BA81 /* hehehe1.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +159,7 @@
 				20B1E83F1DA254060075BA81 /* JoyButtonManager.swift in Sources */,
 				20B1E8161D9AB2F60075BA81 /* ViewController.swift in Sources */,
 				20B1E8341D9BF28E0075BA81 /* JoyButton.swift in Sources */,
+				20B1E84B1DA4F1A10075BA81 /* MyUIButton.swift in Sources */,
 				20B1E8141D9AB2F60075BA81 /* AppDelegate.swift in Sources */,
 				20B1E83B1D9C126F0075BA81 /* CustomGestureRecognizer.swift in Sources */,
 				20B1E8321D9BAF850075BA81 /* MyButton.swift in Sources */,
@@ -350,6 +330,7 @@
 				20B1E8241D9AB2F60075BA81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
