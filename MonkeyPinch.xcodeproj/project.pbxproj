@@ -20,6 +20,7 @@
 		20B1E84B1DA4F1A10075BA81 /* MyUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */; };
 		20B1E84D1DA50FBB0075BA81 /* ConnectThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */; };
 		20B1E84F1DABB2BD0075BA81 /* ServerMsgHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84E1DABB2BD0075BA81 /* ServerMsgHandler.swift */; };
+		20B1E8511DABC9D60075BA81 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E8501DABC9D60075BA81 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUIButton.swift; sourceTree = "<group>"; };
 		20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectThread.swift; sourceTree = "<group>"; };
 		20B1E84E1DABB2BD0075BA81 /* ServerMsgHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerMsgHandler.swift; sourceTree = "<group>"; };
+		20B1E8501DABC9D60075BA81 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				20B1E8131D9AB2F60075BA81 /* AppDelegate.swift */,
+				20B1E8501DABC9D60075BA81 /* MainViewController.swift */,
 				20B1E8151D9AB2F60075BA81 /* ViewController.swift */,
 				20B1E8171D9AB2F60075BA81 /* Main.storyboard */,
 				20B1E81A1D9AB2F60075BA81 /* Assets.xcassets */,
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20B1E83F1DA254060075BA81 /* JoyButtonManager.swift in Sources */,
+				20B1E8511DABC9D60075BA81 /* MainViewController.swift in Sources */,
 				20B1E8161D9AB2F60075BA81 /* ViewController.swift in Sources */,
 				20B1E8341D9BF28E0075BA81 /* JoyButton.swift in Sources */,
 				20B1E84B1DA4F1A10075BA81 /* MyUIButton.swift in Sources */,

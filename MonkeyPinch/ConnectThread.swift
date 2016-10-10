@@ -19,9 +19,9 @@ class MyInputStream : NSObject {
         switch MySocket.a {
         case 5:
             curBuf = buf1
-        case 7:
+        case 20:
             curBuf = buf2
-        case 8:
+        case 50:
             curBuf = buf3
         default:
             curBuf = ""
@@ -49,7 +49,7 @@ class MySocket : NSObject {
         Thread.sleep (forTimeInterval: 0.5)
         
         MySocket.a += 1
-        if MySocket.a < 10 {
+        if MySocket.a < 100 {
             return true
         }
         
@@ -74,12 +74,12 @@ class MySocket : NSObject {
 }
 
 class ConnectThread : NSObject {
-    private var viewController:ViewController
+    private var viewController:MainViewController
     private var thread:Thread? = nil
     private var mmSocket:MySocket
     private var m_msgThread:ConnectedThread? = nil
     
-    init (_ viewController: ViewController) {
+    init (_ viewController: MainViewController) {
         self.viewController = viewController
         self.mmSocket = MySocket(UUID(uuidString: Constants.UUID.MY_UUID)! )
     }
@@ -251,7 +251,6 @@ class ConnectThread : NSObject {
                      * we could stop rolling by finishing this loop, but in such a case we could not obtain msgs from server
                      */
                     Thread.sleep(forTimeInterval: 0.01)
-                    
                 } else {
                     break
                 }
@@ -261,7 +260,7 @@ class ConnectThread : NSObject {
             parent.cancel();
         }
         
-        func sendText(_ someText: String ) -> Void{
+        func sendText(_ someText: String ) -> Void {
             do {
                 if mmSocket.isConnected() {
                     let txtLength = "\(someText.characters.count)"
