@@ -8,6 +8,31 @@
 
 import Foundation
 
+class MyInputStream : NSObject {
+    
+    var buf1:String=Constants.ServerMsgTagConstants.DEVICELIST + Constants.ServerMsgTagConstants.TAG_DELIMETER + "someDeviceInfo"
+    var buf2:String=Constants.ServerMsgTagConstants.ASKDEVICE_OK
+    var buf3:String=Constants.ServerMsgTagConstants.ASKDEVICE_ERROR
+    var curBuf:String=""
+    func available() -> Int {
+        
+        switch MySocket.a {
+        case 5:
+            curBuf = buf1
+        case 7:
+            curBuf = buf2
+        case 8:
+            curBuf = buf3
+        default:
+            curBuf = ""
+        }
+
+        return curBuf.characters.count
+    }
+    func read( val: inout String) -> Void {
+        val = curBuf
+    }
+}
 
 class MySocket : NSObject {
     private let uuid: UUID
@@ -15,12 +40,36 @@ class MySocket : NSObject {
     init (_ uuid: UUID) {
         self.uuid = uuid
     }
+    
+    static var a:Int  = 0
+    func isConnected() -> Bool {
+        
+        
+        print ("MySocket isConnected \(MySocket.a)")
+        Thread.sleep (forTimeInterval: 0.5)
+        
+        MySocket.a += 1
+        if MySocket.a < 10 {
+            return true
+        }
+        
+        return false
+    }
+
+    
     func connect() throws -> Void {
-        Thread.sleep(forTimeInterval: 3)
+        print ("MySocket::connect()...")
+        Thread.sleep(forTimeInterval: 1)
+        print ("MySocket::has been connected")
     }
     
     func close () throws -> Void {
-        
+        print ("MySocket::close()")
+    }
+    //
+    let inStream:MyInputStream = MyInputStream()
+    func getInputStream() -> MyInputStream{
+        return inStream
     }
 }
 
@@ -84,7 +133,7 @@ class ConnectThread : NSObject {
             }
             
             // Do work to manage the connection (in a separate thread)
-//            manageConnectedSocket();
+            manageConnectedSocket();
         } else {
         }
     }
@@ -113,17 +162,32 @@ class ConnectThread : NSObject {
             m_msgThread?.sendCode(code);
         }
     }
+    
+    // Do work to manage the connection (in a separate thread)
+    private func manageConnectedSocket() -> Void {
+        DispatchQueue.global().async {
+            // Disable acitivity till server returneed answer
+            self.viewController.waitingStart();
+            
+            /**
+             * Initiate process of connection by request the device list
+             */
+            self.sendText(Constants.ServerMsgTagConstants.DEVICELIST);
+        }
+    }
     /*
      ========================================================================================
      */
     private class ConnectedThread : NSObject {
         private var thread:Thread? = nil
         private var mmSocket:MySocket
+        private var mmInStream:MyInputStream;
         private var parent:ConnectThread
         
         init (_ socket: MySocket, by parent: ConnectThread) {
             self.parent = parent
             self.mmSocket = socket
+            self.mmInStream = socket.getInputStream();
         }
         
         func start() -> Void {
@@ -138,22 +202,61 @@ class ConnectThread : NSObject {
         }
         
         func run(_ param:Int) -> Void {
-            var i:Int = 0
+
             while thread?.isExecuting == true {
-                print ("MyThread run \(i)")
-                Thread.sleep (forTimeInterval: 0.5)
-                i += 1
-                
-                if i >= 10 {
+                if mmSocket.isConnected() {
+                    if mmInStream.available() > 0 {
+                        var bufStr: String = "";
+                        mmInStream.read(val: &bufStr)
+                        
+                        let bufStrTokens = bufStr.characters.split {$0 == " "}.map(String.init)
+                        
+                        if bufStrTokens.count > 0 {
+                            switch bufStrTokens[0] {
+                            case Constants.ServerMsgTagConstants.DEVICELIST:
+                                var sendMsgText:String = ""
+                                if bufStrTokens.count > 1 {
+                                    sendMsgText = bufStrTokens[1]
+                                }
+                                print ("DEVICELIST " + sendMsgText)
+self.parent.viewController.waitingStop();
+                                break
+                            case Constants.ServerMsgTagConstants.ASKDEVICE_OK:
+                                print ("ASKDEVICE_OK")
+                                break
+                            case Constants.ServerMsgTagConstants.ASKDEVICE_ERROR:
+                                print ("ASKDEVICE_ERROR")
+                                break
+                            default:
+                                break
+                            }
+                        }
+                        
+                    }
+                    /** todo:
+                     * actually here we roll in loop and could obtain msg from server.
+                     * we could stop rolling by finishing this loop, but in such a case we could not obtain msgs from server
+                     */
+                    Thread.sleep(forTimeInterval: 0.01)
+                    
+                } else {
                     break
                 }
+                
             }
-            cancel()
+            // Similar to \connectionLost() but without UI-alert notification
+            parent.cancel();
         }
         
-        func sendText(_ text: String ) -> Void{
+        func sendText(_ someText: String ) -> Void{
             do {
-                
+                if mmSocket.isConnected() {
+                    let txtLength = "\(someText.characters.count)"
+                    let txtOutput = txtLength + Constants.ServerMsgTagConstants.TAG_DELIMETER + someText;
+                    
+//                    mmOutStream.write(txtOutput.getBytes(Charset.forName("UTF-8")));
+print ("sendText: " + txtOutput)
+                }
             } catch {
                 connectionLost();
             }
@@ -161,7 +264,9 @@ class ConnectThread : NSObject {
         
         func sendCode(_ code: Int) -> Void {
             do {
-                
+                if mmSocket.isConnected() {
+//                    mmOutStream.write(code);
+                }
             } catch {
                 connectionLost();
             }

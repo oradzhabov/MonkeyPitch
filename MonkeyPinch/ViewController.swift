@@ -44,16 +44,16 @@ class ViewController: UIViewController {
             print ("Press Image \(me.getJoyIndex()) with state \(state)")
         }
 var thread = ConnectThread(self)
+thread.start()
         addImage(for: CGPoint(x:50,y:50),
                  mode: MyButtonMode.Play)
         { (_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void in
             switch state {
             case .began:
-                thread.start()
+thread.stop()
                 print ("Press Image \(me.getJoyIndex())")
                 break
             case .ended:
-                thread.stop()
                 print ("Release Image \(me.getJoyIndex())")
                 self.btnManager.setEditMode()
                 break
@@ -64,7 +64,9 @@ var thread = ConnectThread(self)
         
         self.btnManager.setPlayMode()
         
-        
+        //
+        // Load joystick buttons locations
+        //
 //        btnManager.load(to: self, delegate: playDelegate)
         
         //
@@ -98,12 +100,14 @@ var thread = ConnectThread(self)
             self.loadingView.addSubview(self.spinner)
             self.view.addSubview(self.loadingView)
             self.spinner.startAnimating()
+print ("waitingStart")
         }
     }
     func waitingStop() {
         DispatchQueue.main.async {
             self.spinner.stopAnimating()
             self.loadingView.removeFromSuperview()
+print ("waitingStop")
         }
     }
     
