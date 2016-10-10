@@ -10,7 +10,7 @@ import Foundation
 
 class MyInputStream : NSObject {
     
-    var buf1:String=Constants.ServerMsgTagConstants.DEVICELIST + Constants.ServerMsgTagConstants.TAG_DELIMETER + "someDeviceInfo"
+    var buf1:String=Constants.ServerMsgTagConstants.DEVICELIST + String(Constants.ServerMsgTagConstants.TAG_DELIMETER) + "Device1,Device2,Device3"
     var buf2:String=Constants.ServerMsgTagConstants.ASKDEVICE_OK
     var buf3:String=Constants.ServerMsgTagConstants.ASKDEVICE_ERROR
     var curBuf:String=""
@@ -209,7 +209,12 @@ class ConnectThread : NSObject {
                         var bufStr: String = "";
                         mmInStream.read(val: &bufStr)
                         
-                        let bufStrTokens = bufStr.characters.split {$0 == " "}.map(String.init)
+                        let tag_delim = Constants.ServerMsgTagConstants.TAG_DELIMETER
+                        
+                        let bufStrTokens = bufStr.characters.split{ $0 == tag_delim}.map(String.init)
+                        
+                        
+                        
                         
                         if bufStrTokens.count > 0 {
                             switch bufStrTokens[0] {
@@ -218,14 +223,22 @@ class ConnectThread : NSObject {
                                 if bufStrTokens.count > 1 {
                                     sendMsgText = bufStrTokens[1]
                                 }
-                                print ("DEVICELIST " + sendMsgText)
-self.parent.viewController.waitingStop();
+//                                print ("DEVICELIST " + sendMsgText)
+                                self.parent.viewController.serverNotofication(
+                                    what: ServerMsgHandler.NOTIFY_SERVER_DEVICELIST,
+                                    msg: sendMsgText)
                                 break
                             case Constants.ServerMsgTagConstants.ASKDEVICE_OK:
-                                print ("ASKDEVICE_OK")
+//                                print ("ASKDEVICE_OK")
+                                self.parent.viewController.serverNotofication(
+                                    what: ServerMsgHandler.NOTIFY_SERVER_ASKEDDEVICE_OK,
+                                    msg: "")
                                 break
                             case Constants.ServerMsgTagConstants.ASKDEVICE_ERROR:
-                                print ("ASKDEVICE_ERROR")
+//                                print ("ASKDEVICE_ERROR")
+                                self.parent.viewController.serverNotofication(
+                                    what: ServerMsgHandler.NOTIFY_SERVER_ASKEDDEVICE_ERROR,
+                                    msg: "")
                                 break
                             default:
                                 break
@@ -252,7 +265,7 @@ self.parent.viewController.waitingStop();
             do {
                 if mmSocket.isConnected() {
                     let txtLength = "\(someText.characters.count)"
-                    let txtOutput = txtLength + Constants.ServerMsgTagConstants.TAG_DELIMETER + someText;
+                    let txtOutput = txtLength + String(Constants.ServerMsgTagConstants.TAG_DELIMETER) + someText;
                     
 //                    mmOutStream.write(txtOutput.getBytes(Charset.forName("UTF-8")));
 print ("sendText: " + txtOutput)

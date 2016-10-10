@@ -36,7 +36,7 @@ struct Constants {
         static let  ASKDEVICE = "ASKDEVICE"
         static let  ASKDEVICE_OK = "ASKDEVICE_OK"
         static let  ASKDEVICE_ERROR = "ASKDEVICE_ERROR"
-        static let  TAG_DELIMETER = " "
-        static let  DEVICELIST_DELIMETER = ","
+        static let  TAG_DELIMETER:Character = " "
+        static let  DEVICELIST_DELIMETER:Character = ","
     }
 }

@@ -19,6 +19,7 @@
 		20B1E83F1DA254060075BA81 /* JoyButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */; };
 		20B1E84B1DA4F1A10075BA81 /* MyUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */; };
 		20B1E84D1DA50FBB0075BA81 /* ConnectThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */; };
+		20B1E84F1DABB2BD0075BA81 /* ServerMsgHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1E84E1DABB2BD0075BA81 /* ServerMsgHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoyButtonManager.swift; sourceTree = "<group>"; };
 		20B1E84A1DA4F1A10075BA81 /* MyUIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUIButton.swift; sourceTree = "<group>"; };
 		20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectThread.swift; sourceTree = "<group>"; };
+		20B1E84E1DABB2BD0075BA81 /* ServerMsgHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerMsgHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				20B1E8331D9BF28E0075BA81 /* JoyButton.swift */,
 				20B1E83E1DA254060075BA81 /* JoyButtonManager.swift */,
 				20B1E84C1DA50FBB0075BA81 /* ConnectThread.swift */,
+				20B1E84E1DABB2BD0075BA81 /* ServerMsgHandler.swift */,
 			);
 			path = MonkeyPinch;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				20B1E8341D9BF28E0075BA81 /* JoyButton.swift in Sources */,
 				20B1E84B1DA4F1A10075BA81 /* MyUIButton.swift in Sources */,
 				20B1E8141D9AB2F60075BA81 /* AppDelegate.swift in Sources */,
+				20B1E84F1DABB2BD0075BA81 /* ServerMsgHandler.swift in Sources */,
 				20B1E83B1D9C126F0075BA81 /* CustomGestureRecognizer.swift in Sources */,
 				20B1E8321D9BAF850075BA81 /* MyButton.swift in Sources */,
 				20B1E84D1DA50FBB0075BA81 /* ConnectThread.swift in Sources */,

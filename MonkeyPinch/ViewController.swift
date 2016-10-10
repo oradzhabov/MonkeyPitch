@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     private var loadingView: UIView = UIView()
 
     var btnManager = JoyButtonManager()
+    private var serverMsgHandler:ServerMsgHandler? = nil
     
     
     open override var shouldAutorotate: Bool {
@@ -43,6 +44,7 @@ class ViewController: UIViewController {
         { (_ state: UIGestureRecognizerState, _ me: JoyButton) -> Void in
             print ("Press Image \(me.getJoyIndex()) with state \(state)")
         }
+        serverMsgHandler = ServerMsgHandler(self)// instance it before thread
 var thread = ConnectThread(self)
 thread.start()
         addImage(for: CGPoint(x:50,y:50),
@@ -122,6 +124,14 @@ print ("waitingStop")
             //self.btnManager.setEditMode()
             break
         default: break
+        }
+    }
+    //
+    //
+    //
+    func serverNotofication(what : Int, msg: String) -> Void {
+        DispatchQueue.main.async {
+            self.serverMsgHandler?.handleMessage(what: what, msg: msg)
         }
     }
 
