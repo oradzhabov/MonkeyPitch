@@ -209,12 +209,7 @@ class ConnectThread : NSObject {
                         var bufStr: String = "";
                         mmInStream.read(val: &bufStr)
                         
-                        let tag_delim = Constants.ServerMsgTagConstants.TAG_DELIMETER
-                        
-                        let bufStrTokens = bufStr.characters.split{ $0 == tag_delim}.map(String.init)
-                        
-                        
-                        
+                        let bufStrTokens = bufStr.characters.split{ $0 == Constants.ServerMsgTagConstants.TAG_DELIMETER}.map(String.init)
                         
                         if bufStrTokens.count > 0 {
                             switch bufStrTokens[0] {
@@ -223,20 +218,17 @@ class ConnectThread : NSObject {
                                 if bufStrTokens.count > 1 {
                                     sendMsgText = bufStrTokens[1]
                                 }
-//                                print ("DEVICELIST " + sendMsgText)
-                                self.parent.viewController.serverNotofication(
+                                self.parent.viewController.serverNotification(
                                     what: ServerMsgHandler.NOTIFY_SERVER_DEVICELIST,
                                     msg: sendMsgText)
                                 break
                             case Constants.ServerMsgTagConstants.ASKDEVICE_OK:
-//                                print ("ASKDEVICE_OK")
-                                self.parent.viewController.serverNotofication(
+                                self.parent.viewController.serverNotification(
                                     what: ServerMsgHandler.NOTIFY_SERVER_ASKEDDEVICE_OK,
                                     msg: "")
                                 break
                             case Constants.ServerMsgTagConstants.ASKDEVICE_ERROR:
-//                                print ("ASKDEVICE_ERROR")
-                                self.parent.viewController.serverNotofication(
+                                self.parent.viewController.serverNotification(
                                     what: ServerMsgHandler.NOTIFY_SERVER_ASKEDDEVICE_ERROR,
                                     msg: "")
                                 break

@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func serverNotofication(what : Int, msg: String) -> Void {
+    func serverNotification(what : Int, msg: String) -> Void {
         self.serverMsgHandler?.handleMessage(what: what, msg: msg)
     }
     func refreshView() -> Void {

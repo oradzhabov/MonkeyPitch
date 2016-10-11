@@ -33,6 +33,8 @@ class ServerMsgHandler : NSObject  {
                 
             case ServerMsgHandler.NOTIFY_SERVER_DEVICELIST:
                 var strDeviceList = msg;
+                print ("NOTIFY_SERVER_DEVICELIST with: " + strDeviceList)
+                
                 if (strDeviceList.characters.count > 0) {
                     
                     let devices = strDeviceList.characters.split
@@ -40,6 +42,9 @@ class ServerMsgHandler : NSObject  {
                     
                     self.deviceNameList = devices
                     if (devices.count > 0) {
+                        //
+                        // Update list of devices
+                        //
                         self.owner.refreshView()
                         /*
                         AlertDialog.Builder builderSingle = new AlertDialog.Builder(MainActivity.this);
